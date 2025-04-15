@@ -1,51 +1,53 @@
 <img src="https://github.com/user-attachments/assets/fc62dabf-260b-47fb-bff2-15d0ba0f75b5" alt="Imagen" width="300" height="300">
 
-## Objetivo
+## Objective
 
-Esta herramienta está diseñada para situaciones en las que, en un parque de dispositivos administrados por **Intune**, tenemos una gran cantidad de equipos y necesitamos localizar el **Hash ID** de un dispositivo sin tener acceso al número de serie. Además, si disponemos del número de serie, la herramienta permite identificar cuántos dispositivos "huérfanos" están asociados al mismo Hash ID.
+This tool is designed for scenarios where, in a fleet of devices managed by **Intune**, we have a large number of machines and need to locate a device's **Hash ID** without having access to the serial number. Additionally, if the serial number is available, the tool allows identifying how many "orphan" devices are associated with the same Hash ID.
 
-El problema surge cuando utilizamos **Autopilot híbrido** y formateamos un equipo sin eliminar el objeto correspondiente de **Active Directory (AD)**. En este caso, **Entra Connect** sincroniza el objeto, subiéndolo a **Azure AD**, convirtiéndolo en un **objeto huérfano**. 
+The issue arises when using **hybrid Autopilot** and formatting a device without removing its corresponding object from **Active Directory (AD)**. In this case, **Entra Connect** syncs the object, uploading it to **Azure AD**, turning it into an **orphan object**.
 
-Esta herramienta nos ayudará a **erradicar este problema**, permitiendo identificar y gestionar dispositivos huérfanos en el sistema, incluso sin contar con el número de serie, lo que facilita la administración del parque de dispositivos.
+This tool will help **eliminate this issue** by enabling the identification and management of orphan devices in the system, even without knowing the serial number, making device fleet administration easier.
 
+## Description
 
-## Descripción
+This script enables management of devices in **Azure Active Directory (Azure AD)** and **Autopilot**, providing the ability to search for devices by **name** or **serial number**.
 
-Este script permite gestionar dispositivos en **Azure Active Directory (Azure AD)** y **Autopilot**, proporcionando la capacidad de buscar dispositivos por **nombre** o **número de serie**.
+- When searching by **device name**, the script retrieves the device’s **ZTDID** from Autopilot and displays related information, including the owners associated with that **ZTDID**.
+- When searching by **serial number**, the script retrieves the corresponding **ZTDID** and then searches for related devices in **Azure AD**.
 
-- Si se realiza la búsqueda por **nombre** de dispositivo, el script obtiene el **ZTDID** del dispositivo en Autopilot y muestra información relacionada, incluyendo los propietarios asociados a ese **ZTDID**.
-- Si se realiza la búsqueda por **número de serie**, el script obtiene el **ZTDID** correspondiente del dispositivo y luego busca los dispositivos relacionados en **Azure AD**.
+## Requirements
 
-## Requisitos
-
-- **Requiere conexión a Microsoft Graph** con los permisos:
+- **Requires connection to Microsoft Graph** with the following permissions:
   - `Device.Read.All`
   - `User.Read.All`
   
-- **Dependencias**:
-  - Módulo `Microsoft.Graph` de PowerShell.
-  - Módulo `WindowsAutopilotIntune` de PowerShell.
+- **Dependencies**:
+  - PowerShell module `Microsoft.Graph`
+  - PowerShell module `WindowsAutopilotIntune`
 
-- **Requiere PowerShell** con permisos suficientes para ejecutar los módulos mencionados.
+- **Requires PowerShell** with sufficient privileges to execute the aforementioned modules.
 
-## Uso
+## Usage
 
-El script es interactivo y requiere que el usuario proporcione un **nombre de dispositivo** o **número de serie** para realizar la búsqueda.
+The script is interactive and requires the user to provide a **device name** or **serial number** to perform the search.
 
-### Parámetros
+### Parameters
 
-- **deviceName**: El nombre del dispositivo a buscar en Azure AD. Si se proporciona este parámetro, el script buscará dispositivos que coincidan con ese nombre y mostrará el **ZTDID** correspondiente.
-- **serialNumber**: El número de serie del dispositivo a buscar en Autopilot. Si se proporciona este parámetro, el script buscará el dispositivo con ese número de serie y luego mostrará los dispositivos asociados en Azure AD.
+- **deviceName**: The name of the device to search for in Azure AD. If this parameter is provided, the script will look for devices matching that name and display the corresponding **ZTDID**.
+- **serialNumber**: The serial number of the device to search for in Autopilot. If this parameter is provided, the script will find the device with that serial number and then display the associated devices in Azure AD.
 
-### Ejemplos
+### Examples
 
-#### Ejemplo 1: Buscar dispositivo por nombre
+#### Example 1: Search for device by name
 
 ```powershell
-# Introduce el nombre del dispositivo
-Introduzca el nombre del dispositivo: AutoPilot-PC
+# Enter the device name
+Enter the device name: AutoPilot-PC
+
 ```
-#### Ejemplo 2: Buscar dispositivo por nombre
+#### Example 2: Search for device by serial number
+
 ```powershell
-# Introduce el número de serie del dispositivo
-Introduzca el número de serie: ABC123456789
+# Enter the device's serial number
+Enter the serial number: ABC123456789
+
