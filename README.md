@@ -1,5 +1,14 @@
 <img src="https://github.com/user-attachments/assets/fc62dabf-260b-47fb-bff2-15d0ba0f75b5" alt="Imagen" width="300" height="300">
 
+## Objetivo
+
+Esta herramienta está diseñada para situaciones en las que, en un parque de dispositivos administrados por **Intune**, tenemos una gran cantidad de equipos y necesitamos localizar el **Hash ID** de un dispositivo sin tener acceso al número de serie. Además, si disponemos del número de serie, la herramienta permite identificar cuántos dispositivos "huérfanos" están asociados al mismo Hash ID.
+
+El problema surge cuando utilizamos **Autopilot híbrido** y formateamos un equipo sin eliminar el objeto correspondiente de **Active Directory (AD)**. En este caso, **Entra Connect** sincroniza el objeto, subiéndolo a **Azure AD**, convirtiéndolo en un **objeto huérfano**. 
+
+Esta herramienta nos ayudará a **erradicar este problema**, permitiendo identificar y gestionar dispositivos huérfanos en el sistema, incluso sin contar con el número de serie, lo que facilita la administración del parque de dispositivos.
+
+
 ## Descripción
 
 Este script permite gestionar dispositivos en **Azure Active Directory (Azure AD)** y **Autopilot**, proporcionando la capacidad de buscar dispositivos por **nombre** o **número de serie**.
