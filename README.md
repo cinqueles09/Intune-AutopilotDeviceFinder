@@ -38,16 +38,6 @@ The script is interactive and requires the user to provide a **device name** or 
 
 ### Examples
 
-#### Example 1: Search for device by name
+![Animation](https://github.com/user-attachments/assets/67319a7a-48c8-4c45-b1b7-ad98d10e3ebb)
 
-```powershell
-# Enter the device name
-Enter the device name: AutoPilot-PC
-
-```
-#### Example 2: Search for device by serial number
-
-```powershell
-# Enter the device's serial number
-Enter the serial number: ABC123456789
 
